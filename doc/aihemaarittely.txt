@@ -1,0 +1,15 @@
+Aihe: Muistipeli
+
+Toteutetaan Javalla muistipeli ja graafinen käyttöliittymä Swingillä.
+Peliin sisältyy pisteiden lasku ja mahdollisesti kentän koon määrittely käyttäjän toimesta.
+
+Käyttäjät: Pelaaja
+
+Kaikkien käyttäjien toiminnot:
+- pelin aloitaminen
+- kentän koon valitseminen
+- pelin pelaaminen arvaamalla kaksi korttia kerrallaan
+  toisen kortin arvauksen jälkeen kortit ovat hetken näkyvissä
+  jos kortit ovat samat ne poistuvat pelilaudalta
+  jos kortit eivät ole samat, ne jäävät näkyviin noin sekunin ajaksi jonka jälkeen ne käännetään taas kuvapuoli alaspäin
+- kun peli on pelattu, ohjelma ilmoittaa kuluneiden arvausten määrän ja kysyy pelataanko uudestaan

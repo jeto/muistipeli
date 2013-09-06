@@ -1,2 +1,6 @@
 4.9.2013
  1h projektin aloittaminen, aihemaarittely
+
+6.9.2013
+ 2h kortti ja pelialusta luokkien toteutus
+ 

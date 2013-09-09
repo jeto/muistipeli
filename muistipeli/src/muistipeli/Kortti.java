@@ -29,8 +29,7 @@ public class Kortti {
     public void turn() {
         if (this.face == true) {
             this.face = false;
-        }
-        if (this.face == false) {
+        } else if (this.face == false) {
             this.face = true;
         }
     }

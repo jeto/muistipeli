@@ -38,7 +38,7 @@ public class Pelialusta {
     }
     
     // Sekoitetaan kortit
-    public void shuffle(){
+    private void shuffle(){
         if(kortit.isEmpty()){
             throw new IllegalArgumentException("Kortteja ei ole luotu!");
         }

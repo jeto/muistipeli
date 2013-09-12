@@ -5,17 +5,24 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Pelialusta {
-    // Korttiparien määrä
-
+    // Korttien määrä
     private int koko;
+    
     //Kentän korkeus & leveys
     private int korkeus;
     private int leveys;
-    // Kortit listaan
+    
+    // Korteille lista
     private ArrayList<Kortti> kortit;
-    // Kortit matriisiin
+    
+    // Korteille matriisi
     private Kortti[][] matriisi;
 
+    /* Alustetaan pelialusta konstruktorissa antamalla kentän korkeus ja leveys
+     * Tarkistetaan, että annetulla koolla kentällä on parillinen määrä kortteja
+     * ja että niitä on oikea määrä (4-30 korttia).
+     * Luodaan kortit
+     */
     public Pelialusta(int korkeus, int leveys) {
         this.koko = korkeus * leveys;
         if (leveys < 2 || korkeus < 2) {
@@ -63,7 +70,8 @@ public class Pelialusta {
             }
         }
     }
-
+    
+    // Matriisille getteri
     public Kortti[][] getMatriisi() {
         return matriisi;
     }
@@ -84,7 +92,8 @@ public class Pelialusta {
 //            System.out.println("");
 //        }
 //    }
-
+    
+    // Korttien määrälle getteri
     public int getSize() {
         return kortit.size();
     }

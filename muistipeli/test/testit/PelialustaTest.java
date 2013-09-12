@@ -49,7 +49,7 @@ public class PelialustaTest {
     @Test
     public void oikeaMaaraKortteja4() throws Exception {
         Pelialusta alusta = new Pelialusta(5,6); // 3 Paria, 6 korttia
-        assertEquals(6, alusta.getSize());
+        assertEquals(30, alusta.getSize());
     }
 
 }

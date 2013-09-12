@@ -31,10 +31,25 @@ public class PelialustaTest {
     public void tearDown() {
     }
 
-//    @Test
-//    public void oikeaMaaraKortteja() throws Exception {
-//        Pelialusta alusta = new Pelialusta(2); // 2 Paria, 4 korttia
-//        
-//    }
+    @Test
+    public void oikeaMaaraKortteja() throws Exception {
+        Pelialusta alusta = new Pelialusta(2,2); // 2 Paria, 4 korttia
+        assertEquals(4, alusta.getSize());
+    }
+    @Test
+    public void oikeaMaaraKortteja2() throws Exception {
+        Pelialusta alusta = new Pelialusta(2,3); // 3 Paria, 6 korttia
+        assertEquals(6, alusta.getSize());
+    }
+    @Test
+    public void oikeaMaaraKortteja3() throws Exception {
+        Pelialusta alusta = new Pelialusta(4,4); // 8 Paria, 16 korttia
+        assertEquals(16, alusta.getSize());
+    }
+    @Test
+    public void oikeaMaaraKortteja4() throws Exception {
+        Pelialusta alusta = new Pelialusta(5,6); // 3 Paria, 6 korttia
+        assertEquals(6, alusta.getSize());
+    }
 
 }

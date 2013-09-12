@@ -6,3 +6,7 @@
  
 9.9.2013
  1h KorttiTestien luominen, luokkakaavio
+
+12.9.2013
+ 3h PelialustaTestien luominen, hahmotelma, Pelialustaluokan parantelu mm. matriisitoiminto
+ 

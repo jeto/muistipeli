@@ -1,4 +1,4 @@
-// Pelialusta luo kortit ja asettaa ne matriisiin.
+// Pelialusta alustaa pelin luomalla kortit ja asettamalla ne matriisiin.
 package muistipeli;
 
 import java.util.ArrayList;
@@ -6,87 +6,95 @@ import java.util.Collections;
 
 public class Pelialusta {
     // Korttien määrä
-    private int koko;
+    private int size;
     
     //Kentän korkeus & leveys
-    private int korkeus;
-    private int leveys;
+    private int height;
+    private int width;
     
     // Korteille lista
-    private ArrayList<Kortti> kortit;
+    private ArrayList<Card> cards;
     
     // Korteille matriisi
-    private Kortti[][] matriisi;
+    private Card[][] matrix;
 
     /* Alustetaan pelialusta konstruktorissa antamalla kentän korkeus ja leveys
      * Tarkistetaan, että annetulla koolla kentällä on parillinen määrä kortteja
      * ja että niitä on oikea määrä (4-30 korttia).
      * Luodaan kortit
      */
-    public Pelialusta(int korkeus, int leveys) {
-        this.koko = korkeus * leveys;
-        if (leveys < 2 || korkeus < 2) {
+    public Pelialusta(int height, int width) {
+        this.size = height * width;
+        if (width < 2 || height < 2) {
             throw new IllegalArgumentException("Kentän minimikoko on 2x2");
-        } else if (leveys > 6 || korkeus > 5 || koko > 30) {
+        } else if (width > 6 || height > 5 || size > 30) {
             throw new IllegalArgumentException("Kentän maksimikoko on 5x6 tai 15 paria!");
-        } else if (koko % 2 != 0) {
+        } else if (size % 2 != 0) {
             throw new IllegalArgumentException("Kentällä tulee olla parillinen määrä kortteja!");
         }
-        this.korkeus = korkeus;
-        this.leveys = leveys;
-        kortit = new ArrayList<>(koko);
-        luoKortit();
+        this.height = height;
+        this.width = width;
+        cards = new ArrayList<>(size);
+        createCards();
     }
 
     // Luodaan korttiparit ja sekoitetaan lista
-    private void luoKortit() {
-        for (int i = 0; i < koko/2; i++) {
-            Kortti kortti;
-            kortti = new Kortti(i);
-            kortit.add(kortti);
-            kortti = new Kortti(i);
-            kortit.add(kortti);
+    private void createCards() {
+        for (int i = 0; i < size/2; i++) {
+            Card kortti;
+            kortti = new Card(i);
+            cards.add(kortti);
+            kortti = new Card(i);
+            cards.add(kortti);
         }
         shuffle();
-        luoMatriisi();
+        createMatrix();
     }
 
     // Sekoitetaan kortit
     private void shuffle() {
-        if (kortit.isEmpty()) {
+        if (cards.isEmpty()) {
             throw new IllegalArgumentException("Kortteja ei ole luotu!");
         }
-        Collections.shuffle(kortit);
+        Collections.shuffle(cards);
     }
 
     // Asetetaan kortit matriisiin
-    public void luoMatriisi() {
+    public void createMatrix() {
         int i = 0;
-        matriisi = new Kortti[korkeus][leveys];
-        for (int row = 0; row < korkeus; row++) {
-            for (int column = 0; column < leveys; column++) {
-                matriisi[row][column] = kortit.get(i);
+        matrix = new Card[height][width];
+        for (int row = 0; row < height; row++) {
+            for (int column = 0; column < width; column++) {
+                matrix[row][column] = cards.get(i);
                 i++;
             }
         }
     }
     
     // Matriisille getteri
-    public Kortti[][] getMatriisi() {
-        return matriisi;
+    public Card[][] getMatrix() {
+        return matrix;
+    }
+    
+    public void removeFromMatrix(int x, int y){
+        matrix[y][x] = null;
+    }
+    
+    public Card getCard(int x, int y){
+        return matrix[y][x];
     }
     
     
     //Testiprinttejä
-//    public void printKortit(){
-//        for (Kortti kortti : kortit) {
-//            System.out.println(kortti.getKortti());
+//    public void printCards(){
+//        for (Card kortti : cards) {
+//            System.out.println(kortti.getCard());
 //        }
 //    }
-//    public void printMatriisi(){
-//        for (int i = 0; i < korkeus; i++) {
-//            for (int j = 0; j < leveys; j++) {
-//                System.out.print(matriisi[i][j].getKortti() + " ");
+//    public void printMatrix(){
+//        for (int i = 0; i < height; i++) {
+//            for (int j = 0; j < width; j++) {
+//                System.out.print(matrix[i][j].getCard() + " ");
 //                
 //            }
 //            System.out.println("");
@@ -95,6 +103,6 @@ public class Pelialusta {
     
     // Korttien määrälle getteri
     public int getSize() {
-        return kortit.size();
+        return cards.size();
     }
 }

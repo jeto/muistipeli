@@ -8,7 +8,7 @@ package muistipeli;
 public class Muistipeli {
 
     public static void main(String[] args) {
-//        Pelialusta peli = new Pelialusta(2,2);
-        
+        Pelialusta peli = new Pelialusta(5,6);
+//        peli.printMatrix();
     }
 }

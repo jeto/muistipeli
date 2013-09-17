@@ -10,3 +10,5 @@
 12.9.2013
  3h PelialustaTestien luominen, hahmotelma, Pelialustaluokan parantelu mm. matriisitoiminto
  
+17.9.2013
+ 3h Refaktorointi englanniksi, engine, gameboard ja engine testejä

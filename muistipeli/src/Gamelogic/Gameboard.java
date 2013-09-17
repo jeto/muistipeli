@@ -1,20 +1,18 @@
 // Pelialusta alustaa pelin luomalla kortit ja asettamalla ne matriisiin.
-package muistipeli;
+package Gamelogic;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Pelialusta {
+public class Gameboard {
     // Korttien määrä
+
     private int size;
-    
     //Kentän korkeus & leveys
     private int height;
     private int width;
-    
     // Korteille lista
     private ArrayList<Card> cards;
-    
     // Korteille matriisi
     private Card[][] matrix;
 
@@ -23,7 +21,7 @@ public class Pelialusta {
      * ja että niitä on oikea määrä (4-30 korttia).
      * Luodaan kortit
      */
-    public Pelialusta(int height, int width) {
+    public Gameboard(int width, int height) {
         this.size = height * width;
         if (width < 2 || height < 2) {
             throw new IllegalArgumentException("Kentän minimikoko on 2x2");
@@ -38,9 +36,14 @@ public class Pelialusta {
         createCards();
     }
 
+    // Luodaan valmis lauta testejä varten.
+    public Gameboard(Card[][] matrix){
+        this.matrix = matrix;
+    }
+    
     // Luodaan korttiparit ja sekoitetaan lista
     private void createCards() {
-        for (int i = 0; i < size/2; i++) {
+        for (int i = 0; i < size / 2; i++) {
             Card kortti;
             kortti = new Card(i);
             cards.add(kortti);
@@ -70,37 +73,45 @@ public class Pelialusta {
             }
         }
     }
-    
+
     // Matriisille getteri
     public Card[][] getMatrix() {
         return matrix;
     }
-    
-    public void removeFromMatrix(int x, int y){
-        matrix[y][x] = null;
-    }
-    
-    public Card getCard(int x, int y){
+
+//    public void removeFromMatrix(int x, int y){
+//        matrix[y][x] = null;
+//    }
+    // Matriisista kortin getteri
+    public Card getCard(int x, int y) {
         return matrix[y][x];
     }
-    
-    
+
     //Testiprinttejä
 //    public void printCards(){
 //        for (Card kortti : cards) {
 //            System.out.println(kortti.getCard());
 //        }
 //    }
-//    public void printMatrix(){
+//    public void printMatrix() {
 //        for (int i = 0; i < height; i++) {
 //            for (int j = 0; j < width; j++) {
-//                System.out.print(matrix[i][j].getCard() + " ");
-//                
+//                if (!matrix[i][j].getFace() && !matrix[i][j].found()) {
+//                    System.out.print("[] ");
+//                } else {
+//                    if (matrix[i][j].getCard() < 10) {
+//                        System.out.print(matrix[i][j].getCard() + "  ");
+//                    } else {
+//                        System.out.print(matrix[i][j].getCard() + " ");
+//                    }
+//                }
+//
+//
 //            }
 //            System.out.println("");
 //        }
 //    }
-    
+
     // Korttien määrälle getteri
     public int getSize() {
         return cards.size();

@@ -1,6 +1,6 @@
-package testit;
+package GamelogicTests;
 
-import muistipeli.Card;
+import Gamelogic.Card;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -46,7 +46,7 @@ public class CardTest {
 //    }
     
     @Test
-    public void kortinGetteri(){
+    public void cardGetter(){
         Card kortti1 = new Card(1);
         Card kortti2 = new Card(2);
         
@@ -55,14 +55,14 @@ public class CardTest {
     }
     
     @Test
-    public void korttienVertaus(){
+    public void cardComparison(){
         Card kortti1 = new Card(1);
         Card kortti2 = new Card(1);
         assertEquals(true, kortti1.same(kortti2));
     }
     
     @Test
-    public void korttienVertausFail(){
+    public void cardComparisonFails(){
         Card kortti1 = new Card(1);
         Card kortti2 = new Card(2);
         assertEquals(false, kortti1.same(kortti2));

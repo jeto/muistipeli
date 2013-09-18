@@ -9,6 +9,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class CardTest {
+    private Card card1;
+    private Card card1_2;
+    private Card card2;
     
     public CardTest() {
     }
@@ -23,48 +26,60 @@ public class CardTest {
     
     @Before
     public void setUp() {
+        card1 = new Card(1);
+        card2 = new Card(2);
+        card1_2 = new Card(1);
     }
     
     @After
     public void tearDown() {
     }
     
-//    @Test
-//    public void kuvapuoliAlaspainLuotaessa(){
-//        Card kortti = new Card(1);
-//        assertEquals(false, kortti.getFace());
-//    }
-    
-//    @Test
-//    public void kortinKaantaminen(){
-//        Card kortti = new Card(1);
-////        assertEquals(false, kortti.getFace());
-//        kortti.turn();
-//        assertEquals(true, kortti.getFace());
-//        kortti.turn();
-//        assertEquals(false, kortti.getFace());
-//    }
+    @Test
+    public void faceDownWhenCreated(){
+        assertEquals(false, card1.getFace());
+    }
     
     @Test
-    public void cardGetter(){
-        Card kortti1 = new Card(1);
-        Card kortti2 = new Card(2);
-        
-        assertEquals(1, kortti1.getCard());
-        assertEquals(2, kortti2.getCard());
+    public void cardNotFoundWhenCreated(){
+        assertEquals(false,card1.found());
+    }
+    
+    @Test
+    public void turningCard(){
+        // Kortin kääntäminen kääntää oikeinpäin, kahdesti kääntäminen takaisin väärinpäin
+        card1.turn();
+        card2.turn();
+        card2.turn();
+        assertEquals(true, card1.getFace());
+        assertEquals(false, card2.getFace());
+    }
+    
+    @Test
+    public void cardGetterReturnsCardID(){
+        assertEquals(1, card1.getCard());
+        assertEquals(2, card2.getCard());
     }
     
     @Test
     public void cardComparison(){
-        Card kortti1 = new Card(1);
-        Card kortti2 = new Card(1);
-        assertEquals(true, kortti1.same(kortti2));
+        // Saman ID korttien vertaaminen palauttaa true
+        assertEquals(true, card1.same(card1_2));
+    }
+    
+    @Test
+    public void findingSameCards(){
+        // Kahden saman kortin vertaaminen merkitsee molemmat löydetyiksi
+        card1.same(card1_2);
+        assertEquals(true, card1.found());
+        assertEquals(true, card1_2.found());
     }
     
     @Test
     public void cardComparisonFails(){
-        Card kortti1 = new Card(1);
-        Card kortti2 = new Card(2);
-        assertEquals(false, kortti1.same(kortti2));
+        // Kahden eri ID kortin vertaaminen palauttaa false
+        assertEquals(false, card1.same(card2));
     }
+    
+    
 }

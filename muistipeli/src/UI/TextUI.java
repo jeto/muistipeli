@@ -38,27 +38,46 @@ public class TextUI {
         engine = new Engine(width, height);
     }
     private void play(){
-        engine.getGameboard().printMatrix();
+        printMatrix();
         while (engine.playing()) {
-
-            
             System.out.println("Anna arvauksen x-koordinaatti: (0-" + (width - 1) + ")");
             int x = scanner.nextInt();
-            while (x > width || x < 0) {
+            while (x > width-1 || x < 0) {
                 System.out.println("Väärä koordinaatti, koordinaatin tulee olla väliltä 0-" + width);
+                x = scanner.nextInt();
             }
             System.out.println("Anna arvauksen y-koordinaatti: (0-" + (height - 1) + ")");
             int y = scanner.nextInt();
-            while (y > height || y < 0) {
+            while (y > height-1 || y < 0) {
                 System.out.println("Väärä koordinaatti, koordinaatin tulee olla väliltä 0-" + height);
+                y = scanner.nextInt();
             }
             engine.turnCard(x, y);
-            engine.getGameboard().printMatrix();
+            printMatrix();
             engine.checkTurnedCards();
         }
     }
     private void end(){
         System.out.println("Onneksi olkoon, läpäisit pelin!");
         System.out.println("Sait " + engine.getScore() + " pistettä ja käytit " + engine.getTurns() + " vuoroa.");
+    }
+    
+    private void printMatrix() {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (!engine.getGameboard().getMatrix()[i][j].getFace() && !engine.getGameboard().getMatrix()[i][j].found()) {
+                    System.out.print("[] ");
+                } else if (engine.getGameboard().getMatrix()[i][j].found()) {
+                    System.out.print("   ");
+                } else {
+                    if (engine.getGameboard().getMatrix()[i][j].getCard() < 10) {
+                        System.out.print(engine.getGameboard().getMatrix()[i][j].getCard() + "  ");
+                    } else {
+                        System.out.print(engine.getGameboard().getMatrix()[i][j].getCard() + " ");
+                    }
+                }
+            }
+            System.out.println("");
+        }
     }
 }

@@ -41,7 +41,7 @@ public class Gameboard {
         this.matrix = matrix;
     }
 
-    // Luodaan korttiparit ja sekoitetaan lista
+    // Luodaan korttiparit ja sekoitetaan lista ja asetetaan kortit matriisiin
     private void createCards() {
         for (int i = 0; i < size / 2; i++) {
             Card kortti;
@@ -79,43 +79,17 @@ public class Gameboard {
         return matrix;
     }
 
-//    public void removeFromMatrix(int x, int y){
-//        matrix[y][x] = null;
-//    }
     // Matriisista kortin getteri
     public Card getCard(int x, int y) {
         return matrix[y][x];
-    }
-
-    //Testiprinttejä
-//    public void printCards(){
-//        for (Card kortti : cards) {
-//            System.out.println(kortti.getCard());
-//        }
-//    }
-    public void printMatrix() {
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                if (!matrix[i][j].getFace() && !matrix[i][j].found()) {
-                    System.out.print("[] ");
-                } else if (matrix[i][j].found()) {
-                    System.out.print("   ");
-                } else {
-                    if (matrix[i][j].getCard() < 10) {
-                        System.out.print(matrix[i][j].getCard() + "  ");
-                    } else {
-                        System.out.print(matrix[i][j].getCard() + " ");
-                    }
-                }
-            }
-            System.out.println("");
-        }
     }
 
     // Korttien määrälle getteri
     public int getSize() {
         return cards.size();
     }
+    
+    // Tarkistetaan onko kaikki kortit löydetty
     public boolean allFound(){
         for (Card card : cards) {
             if(!card.found()){

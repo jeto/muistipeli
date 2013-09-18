@@ -2,16 +2,19 @@ package Gamelogic;
 
 public class Engine {
     // Ensimmäisen kortin kääntäminen
-
     private boolean firstTurn;
+    // Käännetyt kortit
     private Card firstTurned;
     private Card secondTurned;
     // Kääntövuorot, pisteet ja peräkkäin löydetyt
     private int turns;
     private int score;
     private int streak;
+    // Pelilaudan muuttuja
     private Gameboard gameboard;
 
+    // Alustetaan uusi pelilauta annetun koon perusteella
+    // Asetetaan pisteet ja vuorot nolliin, ensimmäinen kortin kääntö true
     public Engine(int height, int width) {
         gameboard = new Gameboard(height, width);
         firstTurn = true;
@@ -27,30 +30,31 @@ public class Engine {
         score = 0;
     }
 
+    // Kortin kääntämismetodi
     public void turnCard(int x, int y) {
         // Tarkistetaan käännetäänkö ensimmäistä vai toista korttia
+        // ja yritetäänkö kääntää jo käännettyä korttia
         if (firstTurn && !gameboard.getCard(x, y).found()) {
             turnFirstCard(x, y);
         } else if (firstTurned != null && gameboard.getCard(x, y) != firstTurned && !gameboard.getCard(x, y).found()) {
             turnSecondCard(x, y);
         }
     }
+    
     // Käännä ensimmäinen kortti
-
     private void turnFirstCard(int x, int y) {
         gameboard.getCard(x, y).turn();
         firstTurn = false;
         firstTurned = gameboard.getCard(x, y);
     }
+    
     // Käännä toinen kortti
-
     private void turnSecondCard(int x, int y) {
         gameboard.getCard(x, y).turn();
         secondTurned = gameboard.getCard(x, y);
-
     }
+    
     // Käännettyjen korttien tarkistus
-
     public void checkTurnedCards() {
         // Jos löytyy pari, kasvatetaan tulosta ja vuoroa, asetetaan kortit löydetyiksi
         // Jos löydetty useampi peräkkäin, kasvatetaan tulosta myös putken verran
@@ -78,6 +82,7 @@ public class Engine {
         return gameboard;
     }
 
+    // Tarkistetaan onko peli käynnissä eli onko pelissä vielä löytämättömiä kortteja
     public boolean playing() {
         if (!gameboard.allFound()) {
             return true;

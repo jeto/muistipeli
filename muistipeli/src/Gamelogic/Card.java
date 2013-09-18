@@ -1,5 +1,6 @@
 // Korttiluokka määrittelee kortin tunnuksen
 // ja onko kortti kuvapuoli ylös vai alaspäin
+// sekä onko kortti löydetty
 
 package Gamelogic;
 
@@ -9,20 +10,18 @@ public class Card {
     private boolean face;
     private boolean found;
     
-//    private boolean face;
-
     public Card(int id) {
         this.id = id;
         this.face = false;
         this.found = false;
     }
 
-//    Kuvapuoli getteri
+    // Kuvapuoli getteri
     public boolean getFace() {
         return face;
     }
     
-    //Käännetään kortti
+    // Käännetään kortti
     public void turn() {
         if (this.face == true) {
             this.face = false;
@@ -31,8 +30,8 @@ public class Card {
         }
     }
     
-    //Onko kortti sama
-    //Jos on, merkitään molemmat löydetyiksi
+    // Onko kortti sama
+    // Jos on, merkitään molemmat löydetyiksi
     public boolean same(Card card){
         if(card.getCard()==this.id){
             card.find();
@@ -42,12 +41,12 @@ public class Card {
         return false;
     }
     
-    //Kortin getteri
+    // Palautetaan kortin tunnus
     public int getCard(){
         return this.id;
     }
     
-    //Kortin löytömetodi
+    // Kortin löytömetodi
     private void find(){
         this.found = true;
     }

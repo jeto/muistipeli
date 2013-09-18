@@ -37,10 +37,10 @@ public class Gameboard {
     }
 
     // Luodaan valmis lauta testejä varten.
-    public Gameboard(Card[][] matrix){
+    public Gameboard(Card[][] matrix) {
         this.matrix = matrix;
     }
-    
+
     // Luodaan korttiparit ja sekoitetaan lista
     private void createCards() {
         for (int i = 0; i < size / 2; i++) {
@@ -93,27 +93,35 @@ public class Gameboard {
 //            System.out.println(kortti.getCard());
 //        }
 //    }
-//    public void printMatrix() {
-//        for (int i = 0; i < height; i++) {
-//            for (int j = 0; j < width; j++) {
-//                if (!matrix[i][j].getFace() && !matrix[i][j].found()) {
-//                    System.out.print("[] ");
-//                } else {
-//                    if (matrix[i][j].getCard() < 10) {
-//                        System.out.print(matrix[i][j].getCard() + "  ");
-//                    } else {
-//                        System.out.print(matrix[i][j].getCard() + " ");
-//                    }
-//                }
-//
-//
-//            }
-//            System.out.println("");
-//        }
-//    }
+    public void printMatrix() {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (!matrix[i][j].getFace() && !matrix[i][j].found()) {
+                    System.out.print("[] ");
+                } else if (matrix[i][j].found()) {
+                    System.out.print("   ");
+                } else {
+                    if (matrix[i][j].getCard() < 10) {
+                        System.out.print(matrix[i][j].getCard() + "  ");
+                    } else {
+                        System.out.print(matrix[i][j].getCard() + " ");
+                    }
+                }
+            }
+            System.out.println("");
+        }
+    }
 
     // Korttien määrälle getteri
     public int getSize() {
         return cards.size();
+    }
+    public boolean allFound(){
+        for (Card card : cards) {
+            if(!card.found()){
+                return false;
+            }
+        }
+        return true;
     }
 }

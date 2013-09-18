@@ -12,3 +12,6 @@
  
 17.9.2013
  3h Refaktorointi englanniksi, engine, gameboard ja engine testejä
+
+18.9.2013
+ 1h Tekstikäyttöliittymä testausta varten

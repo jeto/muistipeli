@@ -8,8 +8,17 @@ package Gamelogic;
  */
 public class Card {
     
+    /**
+     * Kortin tunnus
+     */
     private int id;
+    /**
+     * Kortin kuvapuoli näkyvissä
+     */
     private boolean face;
+    /**
+     * Kortti löydetty
+     */
     private boolean found;
     
     /**

@@ -1,27 +1,30 @@
-// Korttiluokka määrittelee kortin tunnuksen
-// ja onko kortti kuvapuoli ylös vai alaspäin
-// sekä onko kortti löydetty
-
 package Gamelogic;
-
+/**
+ * Card -luokka määrittelee kortin tunnuksen,
+ * onko kortti kuvapuoli ylös vai alaspäin sekä onko kortti löydetty.
+ * Luokka sisältää myös toiminnon korttien vertailulle ja löydetyksi merkitsemiselle.
+ * 
+ * @author Jere Toivonen
+ */
 public class Card {
-
+    
     private int id;
     private boolean face;
     private boolean found;
     
+    /**
+     * Konstruktori määrittelee luodun kortin tunnuksen ja
+     * asettaa luodun kortin löytämättömäksi ja väärinpäin.
+     */
     public Card(int id) {
         this.id = id;
         this.face = false;
         this.found = false;
     }
-
-    // Kuvapuoli getteri
-    public boolean getFace() {
-        return face;
-    }
     
-    // Käännetään kortti
+    /**
+     * Kortin kääntämismetodi kääntää kortin kuvapuolen toisinpäin.
+     */
     public void turn() {
         if (this.face == true) {
             this.face = false;
@@ -30,8 +33,14 @@ public class Card {
         }
     }
     
-    // Onko kortti sama
-    // Jos on, merkitään molemmat löydetyiksi
+    /**
+     * Metodi vertaa annetun kortin tunnusta kortin tunnukseen,
+     * jos tunnus on sama asetetaan molemmat kortit löydetyiksi.
+     * 
+     * @param card Verrattava kortti.
+     * 
+     * @return Palauttaa true jos kortit ovat samat, muutoin false.
+     */
     public boolean same(Card card){
         if(card.getCard()==this.id){
             card.find();
@@ -41,12 +50,14 @@ public class Card {
         return false;
     }
     
-    // Palautetaan kortin tunnus
+    public boolean getFace() {
+        return face;
+    }
+    
     public int getCard(){
         return this.id;
     }
     
-    // Kortin löytömetodi
     private void find(){
         this.found = true;
     }

@@ -17,3 +17,6 @@
  1h Tekstikäyttöliittymä testausta varten
  1h Refaktorointia, korttitestejä ja päivitetty luokkakaavio
 
+19.9.2013
+ 2h JavaDoc
+

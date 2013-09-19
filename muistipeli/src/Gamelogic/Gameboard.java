@@ -1,25 +1,39 @@
-// Pelialusta alustaa pelin luomalla kortit ja asettamalla ne matriisiin.
 package Gamelogic;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
+/**
+ * Gameboard alustaa pelialustan luomalla kortit ja asettamalla ne matriisiin.
+ * 
+ * @author Jere Toivonen
+ */
 public class Gameboard {
-    // Korttien määrä
-
+    /**
+     * Korttien määrä.
+     */
     private int size;
-    //Kentän korkeus & leveys
+    /**
+     * Kentän korkeus.
+     */
     private int height;
+    /**
+     * Kentän leveys.
+     */
     private int width;
-    // Korteille lista
+    /**
+     * Lista johon kortit luodaan ja jossa ne sekoitetaan.
+     */
     private ArrayList<Card> cards;
-    // Korteille matriisi
+    /**
+     * Matriisi johon kortit asetetaan sekoitettuina.
+     */
     private Card[][] matrix;
 
-    /* Alustetaan pelialusta konstruktorissa antamalla kentän korkeus ja leveys
-     * Tarkistetaan, että annetulla koolla kentällä on parillinen määrä kortteja
-     * ja että niitä on oikea määrä (4-30 korttia).
-     * Luodaan kortit
+    /** Alustaa pelialustan konstruktorissa annetulla kentän korkeudella ja leveydellä.
+     * Tarkistetaan, että annetulla koolla kentälle tulee parillinen määrä kortteja
+     * ja että niitä on oikea määrä (4-30 korttia) jonka jälkeen luo kortit.
+     * @param width Kentän leveys
+     * @param height Kentän korkeus
      */
     public Gameboard(int width, int height) {
         this.size = height * width;
@@ -36,12 +50,18 @@ public class Gameboard {
         createCards();
     }
 
-    // Luodaan valmis lauta testejä varten.
+    /**
+     * Luo valmiin esitäytetyn järjestetyn pelialustan testausta varten.
+     * @param matrix Esitäytetty järjestetty matriisi testausta varten.
+     */
     public Gameboard(Card[][] matrix) {
         this.matrix = matrix;
     }
 
-    // Luodaan korttiparit ja sekoitetaan lista ja asetetaan kortit matriisiin
+    /**
+     * Luo korttiparit listaan.
+     * Sekoittaa kortit ja asettaa ne matriisiin.
+     */
     private void createCards() {
         for (int i = 0; i < size / 2; i++) {
             Card kortti;
@@ -54,7 +74,10 @@ public class Gameboard {
         createMatrix();
     }
 
-    // Sekoitetaan kortit
+    /**
+     * Sekoittaa korttilistan.
+     * @see Collections
+     */
     private void shuffle() {
         if (cards.isEmpty()) {
             throw new IllegalArgumentException("Kortteja ei ole luotu!");
@@ -62,7 +85,9 @@ public class Gameboard {
         Collections.shuffle(cards);
     }
 
-    // Asetetaan kortit matriisiin
+    /**
+     * Asettaa kortit matriisiin.
+     */
     public void createMatrix() {
         int i = 0;
         matrix = new Card[height][width];
@@ -74,22 +99,22 @@ public class Gameboard {
         }
     }
 
-    // Matriisille getteri
     public Card[][] getMatrix() {
         return matrix;
     }
 
-    // Matriisista kortin getteri
     public Card getCard(int x, int y) {
         return matrix[y][x];
     }
 
-    // Korttien määrälle getteri
     public int getSize() {
         return cards.size();
     }
     
-    // Tarkistetaan onko kaikki kortit löydetty
+    /**
+     * Tarkistaa onko kaikki kortit löydetty.
+     * @return Palauttaa true, jos kaikki kortit on löydetty, muuten false.
+     */
     public boolean allFound(){
         for (Card card : cards) {
             if(!card.found()){

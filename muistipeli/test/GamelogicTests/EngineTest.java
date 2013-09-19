@@ -42,16 +42,47 @@ public class EngineTest {
         assertEquals(true, engine.getGameboard().getCard(1, 1).getFace());
     }
     
-//    @Test
-//    public void turningTwoSameCards(){
-//        engine.turnCard(0, 0);
-//        engine.turnCard(1,0);
-//        assertEquals(true, engine.getGameboard().getCard(0, 0).found());
-//        assertEquals(true, engine.getGameboard().getCard(0, 1).found());
-//    }
+    @Test
+    public void turningTwoSameCards(){
+        turnTwoFirstCards();
+        engine.checkTurnedCards();
+        assertEquals(true, engine.getGameboard().getCard(0, 0).found());
+        assertEquals(true, engine.getGameboard().getCard(1, 0).found());
+    }
     
-    // Luo valmiin pelialustan valmiilla matriisilla
+    @Test
+    public void scoreUpdatesAfterFindingPair(){
+        turnTwoFirstCards();
+        engine.checkTurnedCards();
+        assertEquals(1, engine.getScore());
+    }
     
+    @Test
+    public void turnsUpdateAfterFindingPair(){
+        turnTwoFirstCards();
+        engine.checkTurnedCards();
+        assertEquals(1, engine.getTurns());
+    }
+    
+    @Test
+    public void turnsUpdateAfterNotFindingPair(){
+        turnTwoDifferentCards();
+        engine.checkTurnedCards();
+        assertEquals(1, engine.getTurns());
+    }
+    
+    private void turnTwoFirstCards(){
+        engine.turnCard(0, 0);
+        engine.turnCard(1, 0);
+    }
+    
+    private void turnTwoDifferentCards(){
+        engine.turnCard(0,0);
+        engine.turnCard(1,1);
+    }
+    
+    // Luo valmiin järjestetyn pelialustan valmiilla matriisilla
+
     private void createMatrix(){
         int i = 0;
         matrix = new Card[4][4];

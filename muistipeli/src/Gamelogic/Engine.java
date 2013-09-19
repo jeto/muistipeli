@@ -10,6 +10,7 @@ public class Engine {
     private int turns;
     private int score;
     private int streak;
+    private int highestStreak;
     // Pelilaudan muuttuja
     private Gameboard gameboard;
 
@@ -20,6 +21,7 @@ public class Engine {
         firstTurn = true;
         turns = 0;
         score = 0;
+        highestStreak = 0;
     }
 
     // Engine valmiilla matriisilla testausta varten
@@ -28,6 +30,7 @@ public class Engine {
         firstTurn = true;
         turns = 0;
         score = 0;
+        highestStreak = 0;
     }
 
     // Kortin kääntämismetodi
@@ -60,15 +63,11 @@ public class Engine {
         // Jos löydetty useampi peräkkäin, kasvatetaan tulosta myös putken verran
         if (secondTurned != null) {
             if (firstTurned.same(secondTurned)) {
-                score++;
-                score += streak;
-                turns++;
-                streak++;
+                pairFound();
                 firstTurn = true;
             } //Jos ei löydy paria, nollataan putki, kasvatetaan vuoroa, käännetään kortit
             else {
-                streak = 0;
-                turns++;
+                pairNotFound();
                 firstTurn = true;
                 secondTurned.turn();
                 firstTurned.turn();
@@ -78,10 +77,25 @@ public class Engine {
         }
     }
 
-    public Gameboard getGameboard() {
-        return gameboard;
+    private void pairFound(){
+        score++;
+        score += streak;
+        streak++;
+        highestStreak(streak);
+        turns++;
     }
-
+    
+    private void pairNotFound(){
+        streak = 0;
+        turns++;
+    }
+    
+    private void highestStreak(int streak){
+        if(streak>highestStreak){
+            highestStreak = streak;
+        }
+    }
+    
     // Tarkistetaan onko peli käynnissä eli onko pelissä vielä löytämättömiä kortteja
     public boolean playing() {
         if (!gameboard.allFound()) {
@@ -90,9 +104,21 @@ public class Engine {
             return false;
         }
     }
+    
+    public Gameboard getGameboard() {
+        return gameboard;
+    }
 
     public int getScore() {
         return score;
+    }
+    
+    public int getStreak(){
+        return streak;
+    }
+    
+    public int getHighestStreak(){
+        return highestStreak;
     }
 
     public int getTurns() {

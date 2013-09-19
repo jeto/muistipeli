@@ -60,6 +60,7 @@ public class TextUI {
     private void end(){
         System.out.println("Onneksi olkoon, läpäisit pelin!");
         System.out.println("Sait " + engine.getScore() + " pistettä ja käytit " + engine.getTurns() + " vuoroa.");
+        System.out.println("Pisin arvausputkesi oli " + engine.getHighestStreak() + " paria peräkkäin!");
     }
     
     private void printMatrix() {

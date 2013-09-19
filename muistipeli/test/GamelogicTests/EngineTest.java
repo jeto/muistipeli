@@ -58,6 +58,27 @@ public class EngineTest {
     }
     
     @Test
+    public void scoreAndStreakUpdatesAfterFindingTwoPairsInARow(){
+        turnTwoFirstCards();
+        engine.checkTurnedCards();
+        turnTwoLastCards();
+        engine.checkTurnedCards();
+        assertEquals(3, engine.getScore());
+    }
+    
+    @Test
+    public void streakDoesNotAffectScore(){
+        // Jos välissä arvataan väärin, putki ei lisää pisteitä
+        turnTwoLastCards();
+        engine.checkTurnedCards();
+        turnTwoDifferentCards();
+        engine.checkTurnedCards();
+        turnTwoFirstCards();
+        engine.checkTurnedCards();
+        assertEquals(2, engine.getScore());
+    }
+    
+    @Test
     public void turnsUpdateAfterFindingPair(){
         turnTwoFirstCards();
         engine.checkTurnedCards();
@@ -71,9 +92,21 @@ public class EngineTest {
         assertEquals(1, engine.getTurns());
     }
     
+    @Test
+    public void scoreDoesNotUpdateAfterNotFindingPair(){
+        turnTwoDifferentCards();
+        engine.checkTurnedCards();
+        assertEquals(0, engine.getScore());
+    }
+    
+    // Korttipari
     private void turnTwoFirstCards(){
         engine.turnCard(0, 0);
         engine.turnCard(1, 0);
+    }
+    private void turnTwoLastCards(){
+        engine.turnCard(3,3);
+        engine.turnCard(2,3);
     }
     
     private void turnTwoDifferentCards(){

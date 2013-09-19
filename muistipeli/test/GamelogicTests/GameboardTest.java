@@ -48,8 +48,13 @@ public class GameboardTest {
         assertEquals(30, createGameBoard(6,5).getSize()); // 15 Paria, 30 korttia
     }
     @Test
-    public void matrixSize2x2() throws Exception{
+    public void matrixWidth6x5() throws Exception{
         assertEquals(5, createGameBoard(6,5).getMatrix().length); // 6 Riviä matriisissa
+    }
+    
+    @Test
+    public void cardsNotFoundWhenCreated(){
+        assertEquals(false, createGameBoard(2, 2).allFound());
     }
     
     // Pelialustan luomismetodi

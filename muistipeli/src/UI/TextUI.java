@@ -43,13 +43,13 @@ public class TextUI {
             System.out.println("Anna arvauksen x-koordinaatti: (0-" + (width - 1) + ")");
             int x = scanner.nextInt();
             while (x > width-1 || x < 0) {
-                System.out.println("Väärä koordinaatti, koordinaatin tulee olla väliltä 0-" + width);
+                System.out.println("Väärä koordinaatti, koordinaatin tulee olla väliltä 0-" + (width-1));
                 x = scanner.nextInt();
             }
             System.out.println("Anna arvauksen y-koordinaatti: (0-" + (height - 1) + ")");
             int y = scanner.nextInt();
             while (y > height-1 || y < 0) {
-                System.out.println("Väärä koordinaatti, koordinaatin tulee olla väliltä 0-" + height);
+                System.out.println("Väärä koordinaatti, koordinaatin tulee olla väliltä 0-" + (height-1));
                 y = scanner.nextInt();
             }
             engine.turnCard(x, y);

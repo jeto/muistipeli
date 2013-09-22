@@ -4,6 +4,7 @@
  */
 package Gamelogic;
 import UI.TextUI;
+import UI.GUI;
 /**
  * Main -luokka, aloittaa pelin.
  * @author Jere
@@ -11,6 +12,8 @@ import UI.TextUI;
 public class Muistipeli {
 
     public static void main(String[] args) {
-        TextUI peli = new TextUI();
+//        TextUI peli = new TextUI();
+        GUI peli = new GUI();
+        peli.run();
     }
 }

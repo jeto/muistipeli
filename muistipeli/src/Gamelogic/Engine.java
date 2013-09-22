@@ -17,25 +17,11 @@ public class Engine {
      */
     private Card secondTurned;
     /**
-     * Kääntövuorot.
-     */
-    private int turns;
-    /**
-     * Pisteet.
-     */
-    private int score;
-    /**
-     * Peräkkäin löydetyt parit.
-     */
-    private int streak;
-    /**
-     * Pisin putki peräkkäin löydettyjä pareja.
-     */
-    private int highestStreak;
-    /**
      * Pelialustan muuttuja.
      */
     private Gameboard gameboard;
+    
+    private Score score;
 
     /**
      * Konstruktori alustaa uuden pelialustan annetun koon perusteella.
@@ -46,9 +32,7 @@ public class Engine {
     public Engine(int height, int width) {
         gameboard = new Gameboard(height, width);
         firstTurn = true;
-        turns = 0;
-        score = 0;
-        highestStreak = 0;
+        score = new Score();
     }
 
     /**
@@ -57,10 +41,8 @@ public class Engine {
      */
     public Engine(Card[][] matrix) {
         gameboard = new Gameboard(matrix);
-        firstTurn = true;   
-        turns = 0;
-        score = 0;
-        highestStreak = 0;
+        firstTurn = true;  
+        score = new Score();
     }
 
     /**
@@ -126,27 +108,16 @@ public class Engine {
      * ja jos löydetty useampi pari peräkkäin kasvattaa tulosta putken verran ja putkea.
      */
     private void pairFound(){
-        score++;
-        score += streak;
-        streak++;
-        highestStreak(streak);
-        turns++;
+        score.addScore();
+        score.addStreak();
+        score.addTurn();
     }
     /**
      * Nollaa putken, kasvattaa vuoroa ja kääntää kortit takaisin väärinpäin.
      */
     private void pairNotFound(){
-        streak = 0;
-        turns++;
-    }
-    /**
-     * Tarkistaa onko peräkkäin löydetetyt kortit pisin putki pelissä.
-     * @param streak Peräkkäin löydetyt parit
-     */
-    private void highestStreak(int streak){
-        if(streak>highestStreak){
-            highestStreak = streak;
-        }
+        score.resetStreak();
+        score.addTurn();
     }
     
     /**
@@ -166,18 +137,22 @@ public class Engine {
     }
 
     public int getScore() {
-        return score;
+        return score.getScore();
+    }
+    
+    public int getFinalScore(){
+        return score.getFinalScore();
     }
     
     public int getStreak(){
-        return streak;
+        return score.getStreak();
     }
     
     public int getHighestStreak(){
-        return highestStreak;
+        return score.getLongestStreak();
     }
 
     public int getTurns() {
-        return turns;
+        return score.getTurns();
     }
 }

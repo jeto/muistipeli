@@ -127,7 +127,7 @@ public class EngineTest {
         }
     }
     private void createCards() {
-        cards = new ArrayList<>(16);
+        cards = new ArrayList<Card>(16);
         for (int i = 0; i < 8; i++) {
             Card kortti;
             kortti = new Card(i);

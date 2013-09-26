@@ -46,7 +46,7 @@ public class Gameboard {
         }
         this.height = height;
         this.width = width;
-        cards = new ArrayList<>(size);
+        cards = new ArrayList<Card>(size);
         createCards();
     }
 

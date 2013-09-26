@@ -81,6 +81,7 @@ public class Engine {
     private void turnSecondCard(int x, int y) {
         gameboard.getCard(x, y).turn();
         secondTurned = gameboard.getCard(x, y);
+//        checkTurnedCards();
     }
     
     /**
@@ -130,6 +131,9 @@ public class Engine {
         } else {
             return true;
         }
+    }
+    public boolean getFirstTurn(){
+        return firstTurn;
     }
     
     public Gameboard getGameboard() {

@@ -1,6 +1,6 @@
 package GamelogicTests;
 
-import Gamelogic.Card;
+import Domain.Card;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package Gamelogic;
+package Domain;
 /**
  * Card -luokka määrittelee kortin tunnuksen,
  * onko kortti kuvapuoli ylös vai alaspäin sekä onko kortti löydetty.

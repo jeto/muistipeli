@@ -1,4 +1,4 @@
-package Gamelogic;
+package Domain;
 
 /**
  *

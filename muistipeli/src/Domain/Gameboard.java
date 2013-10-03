@@ -1,4 +1,4 @@
-package Gamelogic;
+package Domain;
 
 import java.util.ArrayList;
 import java.util.Collections;

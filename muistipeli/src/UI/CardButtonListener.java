@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
  *
  * @author Jere
  */
-public class ButtonListener implements ActionListener {
+public class CardButtonListener implements ActionListener {
 
     private CardButton card;
     private Engine engine;
@@ -21,7 +21,7 @@ public class ButtonListener implements ActionListener {
     private int y;
     private CardTurnTimer timer;
 
-    public ButtonListener(Game game, CardButton card, Engine engine, int x, int y) {
+    public CardButtonListener(Game game, CardButton card, Engine engine, int x, int y) {
         this.card = card;
         this.engine = engine;
         this.x = x;
@@ -32,6 +32,9 @@ public class ButtonListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        timer.stop();
+        engine.checkTurnedCards();
+        
         if (!engine.getFirstTurn()) {
 
             engine.turnCard(x, y);
@@ -42,7 +45,6 @@ public class ButtonListener implements ActionListener {
             engine.turnCard(x, y);
             card.changeState();
         }
-        System.out.println("" + engine.getScore());
     }
 
     public void turnFinished() {
@@ -50,6 +52,12 @@ public class ButtonListener implements ActionListener {
 
         for (CardButton cards : game.getCardButtons()) {
             cards.changeState();
+        }
+        
+        if(!engine.playing()){
+            System.out.println("Peli ohi, pisteesi: "+ engine.getFinalScore());
+            System.out.println("Käytit " + engine.getTurns() + " vuoroa.");
+            System.out.println("Pisin putkesi oli "+ engine.getHighestStreak() + " korttia putkeen!");
         }
     }
 }

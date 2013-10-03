@@ -41,7 +41,7 @@ public class Game extends JPanel {
             for (int column = 0; column < width; column++) {
                 button = new CardButton(game.getGameboard().getCard(column, row));
                 
-                ButtonListener bl = new ButtonListener(this, button, game, column, row);
+                CardButtonListener bl = new CardButtonListener(this, button, game, column, row);
                 button.addActionListener(bl);
                 cards.add(button);
                 c.gridx = column;

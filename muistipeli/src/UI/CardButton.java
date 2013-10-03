@@ -4,7 +4,7 @@
  */
 package UI;
 
-import Gamelogic.Card;
+import Domain.Card;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;

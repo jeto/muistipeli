@@ -1,4 +1,9 @@
 package Gamelogic;
+
+import Domain.Gameboard;
+import Domain.Card;
+import Domain.Score;
+
 /**
  * Engine aloittaa pelin, hallinnoi korttien kääntämistä ja pisteitä.
  * @author Jere

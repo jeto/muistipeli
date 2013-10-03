@@ -4,7 +4,7 @@
  */
 package GamelogicTests;
 
-import Gamelogic.Score;
+import Domain.Score;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

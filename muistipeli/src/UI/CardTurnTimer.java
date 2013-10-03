@@ -14,8 +14,8 @@ import javax.swing.Timer;
  */
 public class CardTurnTimer extends Timer implements ActionListener  {
 
-    private ButtonListener bl;
-    public CardTurnTimer(ButtonListener bl, int aika){
+    private CardButtonListener bl;
+    public CardTurnTimer(CardButtonListener bl, int aika){
         super(aika, null);
         this.bl = bl;
         this.addActionListener(this);

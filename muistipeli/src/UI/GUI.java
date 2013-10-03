@@ -34,7 +34,7 @@ public class GUI implements Runnable {
     
     private void createComponents(Container container){
 //        menu = new Menu(container);
-        game = new Game(6,5);
+        game = new Game(4,4);
 //        container.add(menu);
         container.add(game);
     }

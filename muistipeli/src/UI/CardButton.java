@@ -16,8 +16,10 @@ import javax.swing.JButton;
 public class CardButton extends JButton {
 
     private Card card;
-    ImageIcon back = new ImageIcon("src/resources/card.png");
-    ImageIcon front = new ImageIcon("src/resources/animals/1.png");
+    private ImageIcon back = new ImageIcon("src/resources/card.png");
+    private ImageIcon front = new ImageIcon("src/resources/animals/1.png");
+    private ImageIcon front2 = new ImageIcon("src/resources/cardplain.png");
+    private ImageIcon found = new ImageIcon("src/resources/found.png");
 
     public CardButton(Card card) {
         super();
@@ -27,7 +29,9 @@ public class CardButton extends JButton {
         setBorder(BorderFactory.createEmptyBorder());
         setContentAreaFilled(false);
         setCardIcon();
-
+        setDisabledIcon(found);
+        setRolloverEnabled(true);
+        setRolloverIcon(front2);
     }
 
     private void setCardIcon() {
@@ -36,11 +40,15 @@ public class CardButton extends JButton {
     }
 
     
-    public void turn() {
-        if (!card.getFace()) {
+    public void changeState() {
+        if (card.getFace() && !card.found()) {
+            setRolloverEnabled(false);
             setIcon(front);
-        } else {
+        } else if (!card.getFace() && !card.found()){
+            setRolloverEnabled(true);
             setIcon(back);
+        } else if (card.found()){
+            setEnabled(false);
         }
     }
 }

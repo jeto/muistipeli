@@ -13,27 +13,43 @@ import java.awt.event.ActionListener;
  * @author Jere
  */
 public class ButtonListener implements ActionListener {
-    
+
     private CardButton card;
-    private Engine game;
+    private Engine engine;
+    private Game game;
     private int x;
     private int y;
-    
-    public ButtonListener(CardButton card, Engine game, int x, int y){
+    private CardTurnTimer timer;
+
+    public ButtonListener(Game game, CardButton card, Engine engine, int x, int y) {
         this.card = card;
-        this.game = game;
+        this.engine = engine;
         this.x = x;
         this.y = y;
+        this.game = game;
+        timer = new CardTurnTimer(this, 1500);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        card.turn();
-        game.turnCard(x, y);
-        if(!game.getFirstTurn()){
-            game.checkTurnedCards();
+        if (!engine.getFirstTurn()) {
+
+            engine.turnCard(x, y);
+            card.changeState();
+            timer.start();
+
+        } else {
+            engine.turnCard(x, y);
+            card.changeState();
         }
-        System.out.println(""+game.getScore());
+        System.out.println("" + engine.getScore());
     }
-    
+
+    public void turnFinished() {
+        engine.checkTurnedCards();
+
+        for (CardButton cards : game.getCardButtons()) {
+            cards.changeState();
+        }
+    }
 }

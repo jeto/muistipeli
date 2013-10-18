@@ -4,6 +4,10 @@ import java.awt.CardLayout;
 import javax.swing.JFrame;
 import java.awt.Container;
 import java.awt.Dimension;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
@@ -15,6 +19,7 @@ public class GUI implements Runnable {
     private JFrame jframe;
     private Game game;
     private Menu menu;
+    private JPanel platform;
     
     public GUI(){
         
@@ -33,14 +38,16 @@ public class GUI implements Runnable {
     }
     
     private void createComponents(Container container){
-//        menu = new Menu(container);
-        game = new Game(4,4);
-//        container.add(menu);
+//        JLabel background = new JLabel(new ImageIcon("src/resources/background.png"));
+        BoxLayout layout = new BoxLayout(container, BoxLayout.Y_AXIS);
+        container.setLayout(layout);
+        game = new Game(6,4);
+//        platform = new JPanel(layout, true);
+        menu = new Menu();
+//        container.add(background);
+//        container.add(platform);
         container.add(game);
-    }
-    
-    private void createMenu(){
-        JPanel panel = new JPanel(new CardLayout());
+        container.add(menu);
     }
     
     public JFrame getFrame() {

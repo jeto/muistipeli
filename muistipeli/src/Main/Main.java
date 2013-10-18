@@ -2,14 +2,14 @@
  * muistipeli
  * Ohjelmoinnin harjoitustyö syksy 2013
  */
-package Gamelogic;
+package Main;
 import UI.TextUI;
 import UI.GUI;
 /**
  * Main -luokka, aloittaa pelin.
  * @author Jere
  */
-public class Muistipeli {
+public class Main {
 
     public static void main(String[] args) {
 //        TextUI peli = new TextUI();
